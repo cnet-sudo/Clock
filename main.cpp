@@ -6,6 +6,7 @@ using namespace sf;
 
 int main()
 {
+    // Число ПИ
     const float PI = acos(-1.f);
 
     RenderWindow window(VideoMode(900, 900), L"Часы", Style::Default);

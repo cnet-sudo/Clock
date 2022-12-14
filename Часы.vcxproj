@@ -146,12 +146,8 @@ sfml-window.lib
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
-    <None Include="sfml-audio-2.dll" />
-    <None Include="sfml-audio-d-2.dll" />
     <None Include="sfml-graphics-2.dll" />
     <None Include="sfml-graphics-d-2.dll" />
-    <None Include="sfml-network-2.dll" />
-    <None Include="sfml-network-d-2.dll" />
     <None Include="sfml-system-2.dll" />
     <None Include="sfml-system-d-2.dll" />
     <None Include="sfml-window-2.dll" />
@@ -161,7 +157,6 @@ sfml-window.lib
     <ClInclude Include="lib\SFMLWorldTime.h" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="dockerthree.ttf" />
     <Font Include="lib\Электро.ttf">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
