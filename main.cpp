@@ -1,4 +1,4 @@
-#include"lib\SFMLWorldTime.h"
+#include"SFMLWorldTime.h"
 #include<math.h>
 
 using namespace std;

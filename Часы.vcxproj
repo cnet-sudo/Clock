@@ -141,8 +141,8 @@ sfml-window.lib
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lib\SFMLWorldTime.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SFMLWorldTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -154,9 +154,10 @@ sfml-window.lib
     <None Include="sfml-window-d-2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\SFMLWorldTime.h" />
+    <ClInclude Include="SFMLWorldTime.h" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="lib\dockerthree.ttf" />
     <Font Include="lib\Электро.ttf">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>

@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="lib\SFMLWorldTime.cpp">
+    <ClCompile Include="SFMLWorldTime.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,12 +32,13 @@
     <None Include="sfml-window-d-2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\SFMLWorldTime.h">
+    <ClInclude Include="SFMLWorldTime.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="lib\Электро.ttf" />
+    <Font Include="lib\dockerthree.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\clock.png">
