@@ -6,9 +6,6 @@ using namespace sf;
 
 int main()
 {
-    // Число ПИ
-    const float PI = acos(-1.f);
-
     RenderWindow window(VideoMode(900, 900), L"Часы", Style::Default);
     Image icon;
   if (!icon.loadFromFile("Image/clock.png"))
@@ -28,6 +25,9 @@ int main()
     circleTime.setOutlineThickness(10);
     circleTime.setOutlineColor(Color::Yellow);
 
+    // Число ПИ
+    const float PI = acos(-1.f);
+
     // Рисочки аналоговых часов объявление переменных
     CircleShape PointMin;
     PointMin.setFillColor(Color::Yellow);
@@ -36,6 +36,7 @@ int main()
     float CenterClockX = 450;
     float CenterClockY = 450;
     float xPoint, yPoint;
+
     // Оцифровка циферблата аналоговых часов объявление переменных
     Font fontTime;
     if (!fontTime.loadFromFile("lib/dockerthree.ttf")) return 777;
@@ -61,13 +62,8 @@ int main()
         {
             if (event.type == Event::Closed)
                 window.close();
-
         }
     
-      secArrow.setRotation(6* etm.getsec());  // Вращение секундной стрелки 
-      minArrow.setRotation(6 * etm.getmin()+ etm.getsec()*0.1); // Вращение минутной стрелки 
-      hourArrow.setRotation(30 * etm.gethour()+ etm.getmin()*0.5); // Вращение часовой стрелки 
-      
         window.clear(Color::Blue);
         window.draw(circleTime);  // Корпус аналоговых часов
         etm.drawTime(window);     // Электронные часы
@@ -81,6 +77,7 @@ int main()
         PointMin.setOrigin(radiusPoint/2, radiusPoint/2);
         PointMin.setPosition(xPoint, yPoint);
         window.draw(PointMin);}
+
         // Оцифровка циферблата аналоговых часов
         for (int i = 1; i <= 12; i++)
         {
@@ -89,16 +86,18 @@ int main()
 
             if (i <= 5) TimeText.setPosition(numx - 10, numy - 17);
             else  TimeText.setPosition(numx - 8, numy - 15);
-            
         TimeText.setString(to_string(i));
         window.draw(TimeText);
 
         }
-       
-       window.draw(hourArrow); // часовая стрелка
-       window.draw(minArrow);  // минутная стрелка
-       window.draw(secArrow);  // секундная
-       window.display();
+
+      secArrow.setRotation(6* etm.getsec());  // Вращение секундной стрелки 
+      minArrow.setRotation(6 * etm.getmin()+ etm.getsec()*0.1); // Вращение минутной стрелки 
+      hourArrow.setRotation(30 * etm.gethour()+ etm.getmin()*0.5); // Вращение часовой стрелки 
+      window.draw(hourArrow); // часовая стрелка
+      window.draw(minArrow);  // минутная стрелка
+      window.draw(secArrow);  // секундная
+      window.display();
     }
 
     return 0;
