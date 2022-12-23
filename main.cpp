@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+#include <SFML/Graphics.hpp>
 #include"SFMLWorldTime.h"
 #include<math.h>
 
@@ -25,16 +27,15 @@ int main()
     circleTime.setOutlineThickness(10);
     circleTime.setOutlineColor(Color::Yellow);
 
-    // Число ПИ
-    const float PI = acos(-1.f);
-
     // Рисочки аналоговых часов объявление переменных
-    CircleShape PointMin;
-    PointMin.setFillColor(Color::Yellow);
+    CircleShape PointMin;                    // объект рисочек в виед кружёчков
+    PointMin.setFillColor(Color::Yellow);    // цвет рисочек жёлтый
     float radiusNum = 280; // радиус расположения рисочек
-    float radiusPoint;
-    float CenterClockX = 450;
+    float radiusPoint;     // радиус рисочек 
+    // координаты центра круга по окружности которого рисуются рисочки и другие объекты часов
+    float CenterClockX = 450;  
     float CenterClockY = 450;
+    // координаты рисочек часов
     float xPoint, yPoint;
 
     // Оцифровка циферблата аналоговых часов объявление переменных
@@ -45,7 +46,6 @@ int main()
     TimeText.setCharacterSize(30);
     TimeText.setFillColor(Color::Yellow);
     float numx, numy;
-    
     
     // Рисуем стрелки аналоговых часов
     RectangleShape secArrow(Vector2f(2,280));                // Секундная
@@ -71,8 +71,8 @@ int main()
         // Рисочки аналоговых часов 
         for (int a=0;a<60;a++)  {
         if (a % 5 == 0)  radiusPoint = 8; else  radiusPoint = 4;
-        xPoint = CenterClockX + radiusNum * cos(-6*a*(PI/180)+PI/2);
-        yPoint = CenterClockY - radiusNum * sin(-6*a*(PI/180) + PI/2);
+        xPoint = CenterClockX + radiusNum * cos(-6*a*(M_PI/180)+ M_PI/2);
+        yPoint = CenterClockY - radiusNum * sin(-6*a*(M_PI/180) + M_PI/2);
         PointMin.setRadius(radiusPoint);
         PointMin.setOrigin(radiusPoint/2, radiusPoint/2);
         PointMin.setPosition(xPoint, yPoint);
@@ -81,8 +81,8 @@ int main()
         // Оцифровка циферблата аналоговых часов
         for (int i = 1; i <= 12; i++)
         {
-            numx = CenterClockX + (radiusNum - 30) * cos(-30 * i * (PI / 180) + PI / 2);
-            numy = CenterClockX - (radiusNum - 30) * sin(-30 * i * (PI / 180) + PI / 2);
+            numx = CenterClockX + (radiusNum - 30) * cos(-30 * i * (M_PI/ 180) + M_PI/ 2);
+            numy = CenterClockX - (radiusNum - 30) * sin(-30 * i * (M_PI/ 180) + M_PI/ 2);
 
             if (i <= 5) TimeText.setPosition(numx - 10, numy - 17);
             else  TimeText.setPosition(numx - 8, numy - 15);
