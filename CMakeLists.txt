@@ -1,29 +1,39 @@
-# Заявляем какой версией собирать проект 
-cmake_minimum_required(VERSION 3.10)
-# Имя проекта важно
-project(Часы VERSION 0.0.1)
-include_directories("C:\IT\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include")
-link_directories("C:\IT\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\lib")
-# Создаёт exe файл Myland из TestCmakeFileH.cpp
-# Автоматом подтягивает файлы hieder заголовков MyFile.h 
-# add_executable(MyLand TestCmakeFileH.cpp MyFile.cpp )
-# Перечисляем все рабочие файлы и MyFile.h будет в дереве исходников
-# add_executable(MyLand TestCmakeFileH.cpp MyFile.cpp MyFile.h )
-# Можно сделать это через переменные
-set(SOURCES
-main.cpp
-SFMLWorldTime.cpp
-)
-set(HEADERS
-SFMLWorldTime.h
-)
-add_executable(Clock ${SOURCES} ${HEADERS})
+cmake_minimum_required(VERSION 3.21)
+project(Часы LANGUAGES CXX)
 
-target_link_libraries(Clock sfml-window sfml-graphics sfml-main sfml-system) 
+include(FetchContent)
+FetchContent_Declare(SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 2.6.x)
+FetchContent_MakeAvailable(SFML)
 
-# Добавление свойств к файлу MyLand
-set_target_properties(
-Clock PROPERTIES        # MyLand
-CXX_STANDARD 14          # Собирать стандартом не ниже С++14
-CXX_STANDARD_REQUIRED ON # Стандарт обязателен
-)
+
+add_executable(Clock main.cpp SFMLWorldTime.cpp SFMLWorldTime.h )
+
+
+add_custom_command(TARGET Clock POST_BUILD
+                   
+                   COMMAND ${CMAKE_COMMAND}
+                   ARGS -E copy_directory
+                        ${PROJECT_SOURCE_DIR}/lib
+                        $<TARGET_FILE_DIR:Clock>/lib
+                   VERBATIM)
+add_custom_command(TARGET Clock POST_BUILD                
+                   COMMAND ${CMAKE_COMMAND}
+                   ARGS -E copy_directory
+                        ${PROJECT_SOURCE_DIR}/Image
+                        $<TARGET_FILE_DIR:Clock>/Image
+                   VERBATIM)
+target_link_libraries(Clock PRIVATE sfml-graphics sfml-system sfml-window)
+target_compile_features(Clock PRIVATE cxx_std_14)
+if (WIN32 AND BUILD_SHARED_LIBS)
+    add_custom_command(TARGET Clock POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:Clock> $<TARGET_FILE_DIR:Clock> COMMAND_EXPAND_LISTS)
+endif()
+
+install(TARGETS Clock)
+
+# Директория с СMakeLists.txt
+# cmake -S . -B build
+# cmake --build build --config Release
+# Для запуска проекта выбрать активный проект
