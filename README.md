@@ -9,8 +9,7 @@ C:\IT\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1
 Catalog of books with folders with CMakeLists.txt
 
 cmake -S . -B build
--------------------------------------------------
+
 cmake --build build --config Release
--------------------------------------------------
 
 To run a project, select the active project
